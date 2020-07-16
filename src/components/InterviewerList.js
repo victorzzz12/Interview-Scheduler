@@ -8,8 +8,6 @@ export default function InterviewerList(props) {
     value: PropTypes.number,
     onChange: PropTypes.func.isRequired
   };
-  
-  console.log(props)
   const interviewers = props.interviewers.map((interviewer) => {
    return(<InterviewerListItem 
     key={interviewer.id}

@@ -1,10 +1,11 @@
 import React from "react";
 
-import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAllByTestId, getByAltText, getByPlaceholderText, queryByText, queryByAltText } from "@testing-library/react";
+import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAllByTestId, getByAltText, getByPlaceholderText, queryByText, queryByAltText, waitForElementToBeRemoved } from "@testing-library/react";
 
 import Application from "../Application";
 
 import axios from "axios";
+
 
 afterEach(cleanup);
 
@@ -25,7 +26,7 @@ describe("Application", () => {
   
     const appointments = getAllByTestId(container, "appointment");
     const appointment = appointments[0];
-  
+
     fireEvent.click(getByAltText(appointment, "Add"));
   
     fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
