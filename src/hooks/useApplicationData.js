@@ -45,10 +45,13 @@ export default function useApplicationData() {
      .put(`/api/appointments/${id}`, appointment)
      .then(() => {
       dispatch({ type: SET_INTERVIEW, value: appointments });
-     })
+      })
+     .then(() => {
+      dispatch({ type: UPDATE_SPOTS });
+      })
      .catch((err) => {
       console.error(err)
-     });    
+      });    
 }
 
 function cancelInterview(id) {
