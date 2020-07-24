@@ -2,7 +2,7 @@
 
 This full-stack application was created mainly using React with JS, HTML, CSS incorporated as well.
 
-This application is a pseudo interview scheduler that allows users to book and edit interviews with interviewers in a choice between Monday to Friday within one week. The scheduler is pre-populated by data forked from the Lighthouse Labs scheduler-api (also located within my repository list). 
+This application is a pseudo interview scheduler that allows users to book and edit interviews with interviewers in a choice between Monday to Friday within one week. The scheduler is pre-populated by data forked from the Lighthouse Labs scheduler-api (Also located within my repository list. Please refer to the instructions  on how to use the API located in that repository's README file). 
 
 ## Screenshot
 
