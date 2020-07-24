@@ -30,7 +30,7 @@ export default function useApplicationData() {
     })
   }, [])
 
-    function bookInterview(id, interview) {
+    function bookInterview(id, interview, cb, params, errorParams) {
       const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -45,16 +45,15 @@ export default function useApplicationData() {
      .put(`/api/appointments/${id}`, appointment)
      .then(() => {
       dispatch({ type: SET_INTERVIEW, value: appointments });
-      })
-     .then(() => {
-      dispatch({ type: UPDATE_SPOTS });
-      })
+      cb(params)
+     })  
      .catch((err) => {
       console.error(err)
-      });    
+      cb(errorParams)
+     });   
 }
 
-function cancelInterview(id) {
+function cancelInterview(id, cb, params, errorParams) {
   const appointment = {
     ...state.appointments[id],
     interview: null
@@ -69,12 +68,11 @@ function cancelInterview(id) {
   .delete(`/api/appointments/${id}`)
   .then(() => {    
     dispatch({ type: SET_INTERVIEW, value: appointments });
-  })
-  .then(() => {
-    dispatch({ type: UPDATE_SPOTS });
+    cb(params, true)
   })
   .catch((err) => {
     console.error(err)
+    cb(errorParams, true )
   }); 
   
 }

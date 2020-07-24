@@ -31,28 +31,14 @@ export default function Appointment(props) {
       interviewer
     };
     transition(SAVING);
-    const saving = props.bookInterview(props.id, interview);
-    if (saving === undefined) {
-      setTimeout(() => {
-        transition(SHOW);
-      }, 1000)
-    } else {
-      transition(ERROR_SAVE, true);
-    }
-}
-function deleteApp() {
-  transition(DELETING, true);
-    const deleting = props.cancelInterview(props.id);
-    if (deleting === undefined) {
-      setTimeout(() => {
-        transition(EMPTY);
-      }, 1000)
-    } else {
-      transition(ERROR_DELETE, true);
-    }
+    props.bookInterview(props.id, interview, transition, SHOW, ERROR_SAVE)
+  }
+  function deleteApp() {
+    transition(DELETING);
+    props.cancelInterview(props.id, transition, EMPTY, ERROR_DELETE)
 
 
-}
+  }
 
     return (
       <article className="appointment" data-testid="appointment">
@@ -101,10 +87,10 @@ function deleteApp() {
         />
       )}
       {mode === ERROR_DELETE && (
-        <Error message="Error Deleting Appointment" onClose={() => back()} />
+        <Error message="Server Error. Cannot Delete Appointment" onClose={() => back()} />
       )}
       {mode === ERROR_SAVE && (
-        <Error message="Error Saving Appointment" onClose={() => back()} />
+        <Error message="Server Error. Cannot Save Appointment" onClose={() => back()} />
     )}
         </article>
       );

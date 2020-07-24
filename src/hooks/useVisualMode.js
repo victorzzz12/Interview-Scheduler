@@ -13,8 +13,8 @@ export default function useVisualMode(initial) {
 
   const back = () => {
     if (history.length === 1) return;
-    let h = history.slice(0,history.length - 1)
-    setHistory([...h])
+    const his = history.slice(0,history.length - 1)
+    setHistory([...his])
     setMode(history[history.length - 2])
   };
 
